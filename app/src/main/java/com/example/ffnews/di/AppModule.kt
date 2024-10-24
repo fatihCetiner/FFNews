@@ -3,9 +3,9 @@ package com.example.ffnews.di
 import android.app.Application
 import com.example.ffnews.data.manger.LocalUserMangerImpl
 import com.example.ffnews.domain.manger.LocalUserManger
-import com.example.ffnews.domain.usecases.AppEntryUseCases
-import com.example.ffnews.domain.usecases.ReadAppEntry
-import com.example.ffnews.domain.usecases.SaveAppEntry
+import com.example.ffnews.domain.usecases.app_entry.AppEntryUseCases
+import com.example.ffnews.domain.usecases.app_entry.ReadAppEntry
+import com.example.ffnews.domain.usecases.app_entry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

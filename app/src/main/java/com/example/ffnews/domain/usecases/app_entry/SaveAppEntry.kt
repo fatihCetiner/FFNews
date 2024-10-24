@@ -1,4 +1,4 @@
-package com.example.ffnews.domain.usecases
+package com.example.ffnews.domain.usecases.app_entry
 
 import com.example.ffnews.domain.manger.LocalUserManger
 
