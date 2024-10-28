@@ -12,6 +12,7 @@ import com.example.ffnews.domain.usecases.app_entry.ReadAppEntry
 import com.example.ffnews.domain.usecases.app_entry.SaveAppEntry
 import com.example.ffnews.domain.usecases.news.GetNews
 import com.example.ffnews.domain.usecases.news.NewsUseCases
+import com.example.ffnews.domain.usecases.news.SearchNews
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,7 +58,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 

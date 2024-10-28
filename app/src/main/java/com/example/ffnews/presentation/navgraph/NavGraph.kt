@@ -13,6 +13,8 @@ import com.example.ffnews.presentation.home.HomeScreen
 import com.example.ffnews.presentation.home.HomeViewModel
 import com.example.ffnews.presentation.onboarding.OnBoardingScreen
 import com.example.ffnews.presentation.onboarding.OnBoardingViewModel
+import com.example.ffnews.presentation.search.SearchScreen
+import com.example.ffnews.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -46,13 +48,11 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
-                val viewModel: HomeViewModel = hiltViewModel()
-                val articles = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(
-                    articles = articles,
-                    navigate = {
-                        navController.navigate(Route.DetailsScreen.route)
-                    }
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(
+                    state = viewModel.state.value,
+                    event = viewModel::onEvent,
+                    navigate = {}
                 )
             }
         }

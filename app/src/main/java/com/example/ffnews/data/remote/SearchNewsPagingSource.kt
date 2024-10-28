@@ -4,10 +4,11 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.ffnews.domain.model.Article
 
-class NewsPagingSource(
+class SearchNewsPagingSource(
     private val newsApi: NewsApi,
+    private val searchQuery: String,
     private val sources: String
-) : PagingSource<Int, Article>() {
+): PagingSource<Int, Article>() {
 
     private var totalNewsCount = 0
 
@@ -17,7 +18,7 @@ class NewsPagingSource(
 
         return try {
 
-            val newsResponse = newsApi.getNews(sources = sources, page = page)
+            val newsResponse = newsApi.searchNews(searchQuery = searchQuery,sources = sources, page = page)
             totalNewsCount += newsResponse.articles.size
             val articles = newsResponse.articles.distinctBy { it.title } // Remove duplicates
 
@@ -33,7 +34,6 @@ class NewsPagingSource(
                 throwable = e
             )
         }
-
     }
 
     override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
