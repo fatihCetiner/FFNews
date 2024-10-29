@@ -1,7 +1,11 @@
 package com.example.ffnews.di
 
 import android.app.Application
+import androidx.room.Room
 import com.example.ffnews.common.Constants.BASE_URL
+import com.example.ffnews.data.local.NewsDao
+import com.example.ffnews.data.local.NewsDatabase
+import com.example.ffnews.data.local.NewsTypeConvertor
 import com.example.ffnews.data.manger.LocalUserMangerImpl
 import com.example.ffnews.data.remote.NewsApi
 import com.example.ffnews.data.repository.NewsRepositoryImpl
@@ -19,7 +23,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -62,5 +65,23 @@ object AppModule {
             searchNews = SearchNews(newsRepository)
         )
     }
+
+    @[Provides Singleton]
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = "news_db"
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @[Provides Singleton]
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 
 }
