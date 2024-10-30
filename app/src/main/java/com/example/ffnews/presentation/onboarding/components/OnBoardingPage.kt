@@ -41,7 +41,7 @@ fun OnBoardingPage(
                 .fillMaxHeight(fraction = 0.6f),
             painter = painterResource(id = page.image),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.FillBounds
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
