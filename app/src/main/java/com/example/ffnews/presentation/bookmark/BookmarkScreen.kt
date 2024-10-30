@@ -15,7 +15,6 @@ import com.example.ffnews.R
 import com.example.ffnews.domain.model.Article
 import com.example.ffnews.presentation.Dimens.MediumPadding1
 import com.example.ffnews.presentation.common.ArticlesList
-import com.example.ffnews.presentation.navgraph.Route
 
 
 @Composable
