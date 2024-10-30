@@ -1,22 +1,16 @@
 package com.example.ffnews.presentation.navgraph
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.text.input.KeyboardType.Companion.Text
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.ffnews.presentation.bookmark.BookmarkScreen
 import com.example.ffnews.presentation.bookmark.BookmarkViewModel
-import com.example.ffnews.presentation.home.HomeScreen
-import com.example.ffnews.presentation.home.HomeViewModel
+import com.example.ffnews.presentation.news_navigator.NewsNavigator
 import com.example.ffnews.presentation.onboarding.OnBoardingScreen
 import com.example.ffnews.presentation.onboarding.OnBoardingViewModel
-import com.example.ffnews.presentation.search.SearchScreen
-import com.example.ffnews.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
@@ -50,8 +44,7 @@ fun NavGraph(
             composable(
                 route = Route.NewsNavigatorScreen.route
             ){
-                val viewModel: BookmarkViewModel = hiltViewModel()
-                BookmarkScreen(state = viewModel.state.value, navigate = {})
+                NewsNavigator()
             }
         }
 
